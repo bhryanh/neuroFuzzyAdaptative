@@ -1,3 +1,10 @@
+close all;
+clear all;
+clc;
+
+load ydt;
+load ydv;
+
 epoch_n = 10;
 
 in_fis = genfis1([xt ydt],5,'gaussmf');
