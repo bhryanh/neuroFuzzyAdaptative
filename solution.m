@@ -2,13 +2,17 @@ close all;
 clear all;
 clc;
 
-load ydt;
-load ydv;
+load dinamico/ydt2;
+load dinamico/ydv2;
+ydt = ydt2;
+ydv = ydv2;
+xv = xv2;
+xt = xt2;
 
-m=5;
-alfa=0.1;
-n=1;
-nEp=5;
+m=2;
+alfa=0.01;
+n=3;
+nEp=7;
 npt=length(ydt);
 npv=length(ydv);
 
@@ -32,12 +36,12 @@ for l=1:nEp
         for j=1:m
             dysdwj = (y(j) -  ys(k)) / b;
             dysdyj = w(j) / b;
-            dedys = ys(k) - ydt(k,:);
+            dedys = ys(k) - ydt(k);
             dydqj = 1;   
             for i=1:n
-                dwdcij = w(j)*((xt(k,:)-c(i,j))/(s(i,j)^2));
-                dwdsij = w(j)*(((xt(k,:)*c(i,j))^2)/(s(i,j)^3));
-                dydpij = xt(k,:);
+                dwdcij = w(j)*((xt(k,i)-c(i,j))/(s(i,j)^2));
+                dwdsij = w(j)*(((xt(k,i)*c(i,j))^2)/(s(i,j)^3));
+                dydpij = xt(k,i);
                 dedcij = dedys*dysdwj*dwdcij;
                 dedsij = dedys*dysdwj*dwdsij;
                 dedpij = dedys*dysdyj*dydpij;
@@ -52,9 +56,10 @@ for l=1:nEp
     end
 end
 
-for k=1:npt
-    [ysaida(k),y,w,b] = saida(xt(k,:),p,q,s,c,m,n);
+for k=1:npv
+    [ysaida(k),y,w,b] = saida(xv(k,:),p,q,s,c,m,n);
 end
-plot(xt,ysaida,'.');
+plot(ysaida,'r');
 hold on
-plot(xv,ydv)
+plot(ydv)
+
