@@ -2,12 +2,12 @@ close all;
 clear all;
 clc;
 
-load dinamico/ydt2;
-load dinamico/ydv2;
-ydt = ydt2';
-ydv = ydv2';
-xv = xv2;
-xt = xt2;
+load serie_temporal/ydt4;
+load serie_temporal/ydv4;
+ydt = ydt4;
+ydv = ydv4;
+xv = xv4;
+xt = xt4;
 
 epoch_n = 10;
 
@@ -21,7 +21,7 @@ plot(ysmat);
 hold on
 plot(ydv);
 
-fis = genfis2(xt,ydt, 0.5);
+fis = genfis2(xt,ydt, 0.38);
 
 ysmat2 = evalfis(xv,fis);
 

@@ -1,3 +1,4 @@
+
 function [ys,y,w,b] = saida(x,p,q,s,c,m,n) 
      a = 0;
      b = 0;
@@ -14,3 +15,4 @@ function [ys,y,w,b] = saida(x,p,q,s,c,m,n)
     end
     ys = a/b;
 end
+

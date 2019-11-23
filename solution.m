@@ -2,6 +2,8 @@ close all;
 clear all;
 clc;
 
+% load serie_temporal/ydt4;
+% load serie_temporal/ydv4;3
 load dinamico/ydt2;
 load dinamico/ydv2;
 ydt = ydt2;
@@ -9,10 +11,10 @@ ydv = ydv2;
 xv = xv2;
 xt = xt2;
 
-m=2;
+m=7;
 alfa=0.01;
-n=3;
-nEp=7;
+n=length(xt(1,:));
+nEp=5;
 npt=length(ydt);
 npv=length(ydv);
 
@@ -40,7 +42,7 @@ for l=1:nEp
             dydqj = 1;   
             for i=1:n
                 dwdcij = w(j)*((xt(k,i)-c(i,j))/(s(i,j)^2));
-                dwdsij = w(j)*(((xt(k,i)*c(i,j))^2)/(s(i,j)^3));
+                dwdsij = w(j)*(((xt(k,i)-c(i,j))^2)/(s(i,j)^3));
                 dydpij = xt(k,i);
                 dedcij = dedys*dysdwj*dwdcij;
                 dedsij = dedys*dysdwj*dwdsij;
